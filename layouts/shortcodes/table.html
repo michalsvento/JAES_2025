@@ -1,0 +1,92 @@
+<table class="audio-table" style="width: 100%; margin: auto; border-collapse: collapse;">
+    {{ $rows := 4 }}
+    {{ $cols := 5 }}
+    {{ range seq 1 $rows }}
+    <tr>
+        {{ range seq 1 $cols }}
+        <td class="audio-cell" onclick="playAudio(this)">
+            <button class="play-btn">Play</button>
+        </td>
+        {{ end }}
+    </tr>
+    {{ end }}
+</table>
+
+<script>
+    let currentAudio = null; // Track the current audio element
+
+    function playAudio(cell) {
+        // Stop the currently playing audio if there is one
+        if (currentAudio !== null) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            // Reset the background color of the previous cell
+            currentAudio.cell.style.backgroundColor = '';
+        }
+
+        const audioIndex = Math.floor(Math.random() * 20) + 1;
+        const audioFile = `/audio/track${audioIndex}.mp3`; // Adjust this path for your actual files
+
+        // Create a new audio element
+        const audioElement = new Audio(audioFile);
+
+        // Play the audio
+        audioElement.play();
+
+        // Change the background color of the cell when audio is playing
+        cell.style.backgroundColor = '#d3f0d3'; // Light green (playing)
+
+        // Add an event listener to reset the background color once the song is done
+        audioElement.addEventListener('ended', function() {
+            cell.style.backgroundColor = ''; // Reset color when song ends
+        });
+
+        // Update the currentAudio to track the newly playing audio
+        currentAudio = {
+            audio: audioElement,
+            cell: cell
+        };
+    }
+</script>
+
+<style>
+    .audio-table {
+        max-width: 600px;
+        margin: 2rem auto;
+        border-spacing: 5px;
+    }
+
+    .audio-table td {
+        width: 20%;
+        height: 80px;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        font-size: 20px;
+        background-color: #f9f9f9;
+        transition: background-color 0.3s;
+    }
+
+    .audio-table td:hover {
+        background-color: #e0e0e0;
+    }
+
+    .audio-table td:active {
+        background-color: #ccc;
+    }
+
+    .play-btn {
+        font-size: 16px;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .play-btn:hover {
+        background-color: #45a049;
+    }
+</style>

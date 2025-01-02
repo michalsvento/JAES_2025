@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>NLDistortionDiff</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on NLDistortionDiff</description>
+    <image>
+      <title>NLDistortionDiff</title>
+      <url>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
+      <link>http://localhost:1313/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
+    </image>
+    <generator>Hugo -- 0.140.2</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 02 Jan 2025 15:13:51 +0100</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Operator evaluation</title>
+      <link>http://localhost:1313/posts/operator/</link>
+      <pubDate>Thu, 02 Jan 2025 14:09:58 +0100</pubDate>
+      <guid>http://localhost:1313/posts/operator/</guid>
+      <description>Precision of approximating nonlinear memoryless function</description>
+    </item>
+    <item>
+      <title>Guitar evaluation</title>
+      <link>http://localhost:1313/posts/guitar/</link>
+      <pubDate>Thu, 02 Jan 2025 13:33:03 +0100</pubDate>
+      <guid>http://localhost:1313/posts/guitar/</guid>
+      <description>Hard/Soft clipping for speech signals versus baselines</description>
+    </item>
+    <item>
+      <title>Speech Evaluation</title>
+      <link>http://localhost:1313/posts/speech/</link>
+      <pubDate>Thu, 02 Jan 2025 14:09:49 +0100</pubDate>
+      <guid>http://localhost:1313/posts/speech/</guid>
+      <description>Hard/Soft clipping for speech signals versus baselines</description>
+    </item>
+    <item>
+      <title>Table</title>
+      <link>http://localhost:1313/table/</link>
+      <pubDate>Thu, 02 Jan 2025 15:13:51 +0100</pubDate>
+      <guid>http://localhost:1313/table/</guid>
+      <description>&lt;table class=&#34;audio-table&#34; style=&#34;width: 100%; margin: auto; border-collapse: collapse;&#34;&gt;
+    
+    
+    
+    &lt;tr&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+    &lt;/tr&gt;
+    
+    &lt;tr&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+    &lt;/tr&gt;
+    
+    &lt;tr&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+    &lt;/tr&gt;
+    
+    &lt;tr&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+        &lt;td class=&#34;audio-cell&#34; onclick=&#34;playAudio(this)&#34;&gt;
+            &lt;button class=&#34;play-btn&#34;&gt;Play&lt;/button&gt;
+        &lt;/td&gt;
+        
+    &lt;/tr&gt;
+    
+&lt;/table&gt;
+
+&lt;script&gt;
+    let currentAudio = null; 
+
+    function playAudio(cell) {
+        
+        if (currentAudio !== null) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            
+            currentAudio.cell.style.backgroundColor = &#39;&#39;;
+        }
+
+        const audioIndex = Math.floor(Math.random() * 20) + 1;
+        const audioFile = `/audio/track${audioIndex}.mp3`; 
+
+        
+        const audioElement = new Audio(audioFile);
+
+        
+        audioElement.play();
+
+        
+        cell.style.backgroundColor = &#39;#d3f0d3&#39;; 
+
+        
+        audioElement.addEventListener(&#39;ended&#39;, function() {
+            cell.style.backgroundColor = &#39;&#39;; 
+        });
+
+        
+        currentAudio = {
+            audio: audioElement,
+            cell: cell
+        };
+    }
+&lt;/script&gt;
+
+&lt;style&gt;
+    .audio-table {
+        max-width: 600px;
+        margin: 2rem auto;
+        border-spacing: 5px;
+    }
+
+    .audio-table td {
+        width: 20%;
+        height: 80px;
+        text-align: center;
+        vertical-align: middle;
+        border: 1px solid #ddd;
+        cursor: pointer;
+        font-size: 20px;
+        background-color: #f9f9f9;
+        transition: background-color 0.3s;
+    }
+
+    .audio-table td:hover {
+        background-color: #e0e0e0;
+    }
+
+    .audio-table td:active {
+        background-color: #ccc;
+    }
+
+    .play-btn {
+        font-size: 16px;
+        padding: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+
+    .play-btn:hover {
+        background-color: #45a049;
+    }
+&lt;/style&gt;</description>
+    </item>
+  </channel>
+</rss>

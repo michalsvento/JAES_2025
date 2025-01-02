@@ -1,0 +1,28 @@
+<style>
+  .audio-player {
+    text-align: center;
+    margin: 20px 0;
+  }
+
+  .audio-player audio {
+    width: 100%;
+    max-width: 600px;
+    border: 2px solid #007BFF;
+    border-radius: 8px;
+    background-color: #ffffff;
+  }
+
+  .audio-player p {
+    margin-top: 5px;
+    font-size: 14px;
+    color: #555;
+  }
+</style>
+
+<div class="audio-player">
+  <audio controls>
+    <source src="{{ .Get "src" }}" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <p>Audio: {{ .Get "src" }}</p>
+</div>

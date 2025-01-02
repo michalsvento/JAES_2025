@@ -1,0 +1,36 @@
+<div class="shared-audio-player">
+    <audio id="shared-audio" controls>
+        Your browser does not support the audio element.
+    </audio>
+</div>
+
+<script>
+function playNewAudio(src) {
+    const audioPlayer = document.getElementById('shared-audio');
+
+    // Stop current playback if necessary
+    if (!audioPlayer.paused) {
+        audioPlayer.pause();
+    }
+
+    // Set the new audio source
+    audioPlayer.src = src;
+
+    // Load and play the new audio
+    audioPlayer.load();
+    audioPlayer.play();
+}
+</script>
+
+<style>
+.shared-audio-player {
+    display: flex;
+    justify-content: center; /* Center the audio player */
+    margin: 20px 0; /* Add space above and below */
+}
+
+audio {
+    width: 70%; /* Make the player responsive */
+    max-width: 450px; /* Set a maximum width */
+}
+</style>
