@@ -3,7 +3,7 @@ date: '2025-01-02T13:33:03+01:00'
 draft: False
 title: 'Guitar evaluation'
 summary: 'Hard/Soft clipping for speech signals versus baselines'
-weight: 2
+weight: 3
 ---
 
 
@@ -15,7 +15,7 @@ weight: 2
 | **Clean** | {{< playbutton src="/audio/clean_0.wav">}} | {{< playbutton src="/audio/clean_0.wav">}} |{{< playbutton src="/audio/clean_0.wav">}} |
     
 
-{{< shared-audio-player >}}
+{{< shared-audio-player id="hard-clipping-player">}}
 
 | Method         |                                                  1dB                                                  |                    3dB                     |  7dB  |
 |:---------------|:-----------------------------------------------------------------------------------------------------:|:------------------------------------------:|:-----:|
@@ -29,4 +29,4 @@ weight: 2
 
 ## Soft Clipping
 
-{{< shared-audio-player >}}
+{{< shared-audio-player id="hard-clipping-player">}}

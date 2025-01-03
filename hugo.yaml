@@ -39,7 +39,7 @@ params:
   comments: false
   hidemeta: true
   hideSummary: false
-  showtoc: true
+  showtoc: false
   tocopen: false
   searchHidden: false
   openExternalLinksInNewTab: true
@@ -85,11 +85,14 @@ params:
 
 
 
-      ^1^*[Aalto Acoustic Lab](https://www.aalto.fi/en/aalto-acoustics-lab), DICE, Espoo, Finland*\
+      ^1^*[Aalto Acoustic Lab](https://www.aalto.fi/en/aalto-acoustics-lab), DICE, Aalto University, Espoo, Finland*\
 
       ^2^*[Department of Telecommunications](https://www.utko.fekt.vut.cz/en), FEEC, Brno University of Technology, Czechia *\
 
       ^3^*[Acoustics and Audio Group](https://www.acoustics.ed.ac.uk/), University of Edinburgh, Edinburgh, UK*
+      
+
+      Paper submitted to Journal of Audio Engineering Society (JAES) special issue "Digital Audio Effects"
 
   socialIcons:
     - name: email

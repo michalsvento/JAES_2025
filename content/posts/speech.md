@@ -5,7 +5,7 @@ title: 'Speech Evaluation'
 # description: 'This is speech eval'
 # hideSummary: true
 summary: 'Hard/Soft clipping for speech signals versus baselines'
-weight: 3
+weight: 4
 hidemeta: true
 ---
 
