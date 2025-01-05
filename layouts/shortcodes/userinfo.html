@@ -1,0 +1,14 @@
+{{/* Get user input or set defaults */}}
+{{ $userName := .Get "name" | default "DefaultName" }}
+{{ $userSurname := .Get "surname" | default "DefaultSurname" }}
+
+{{/* Store values in Scratch */}}
+{{ .Scratch.Set "user_name" $userName }}
+{{ .Scratch.Set "user_surname" $userSurname }}
+
+<p>Name: {{ .Scratch.Get "user_name" }}</p>
+<p>Surname: {{ .Scratch.Get "user_surname" }}</p>
+
+
+{{/* Concatenate values */}}
+<p>User ID is: {{ printf "%s %s" (.Scratch.Get "user_name") (.Scratch.Get "user_surname") }}</p>

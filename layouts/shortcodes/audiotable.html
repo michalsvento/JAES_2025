@@ -1,0 +1,73 @@
+<div>
+  <label for="instrument-select">Choose clipping type:</label>
+  <select id="instrument-select">
+    <option value="" disabled selected>Select an instrument</option>
+    <option value="hardclip">HC</option>
+    <option value="soft clipping">SC</option>
+  </select>
+</div>
+
+<div>
+  <label for="sdr-select">Choose SDR:</label>
+  <select id="sdr-select">
+    <option value="" disabled selected>SDR</option>
+    <option value="1dB">1dB</option>
+    <option value="3dB">3dB</option>
+    <option value="7dB">7dB</option>
+  </select>
+</div>
+
+<div>
+  <label for="example-select">Choose an example:</label>
+  <select id="example-select">
+    <option value="" disabled selected>Select an example</option>
+    <!-- Generate options x_0 to x_10 dynamically -->
+    {{ range $i := seq 0 10 }}
+      <option value="x_{{ $i }}">x_{{ $i }}</option>
+    {{ end }}
+  </select>
+</div>
+
+<div>
+  <audio id="audio-player" controls>
+    <source id="audio-source" src="" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+</div>
+
+<!--<audio id="audio-player2" controls>-->
+<!--  <source id="audio-source2" src="/static/audio/guitar/hardclip/1dB/x_0.wav" type="audio/mpeg">-->
+<!--&lt;!&ndash;  <source id="audio-source-ogg" src="/audio/guitar/hardclip/1dB/x_0.ogg" type="audio/ogg">&ndash;&gt;-->
+<!--  Your browser does not support the audio element.-->
+<!--</audio>-->
+
+<p id="audio-path-display">Audio Path: Not selected</p>
+
+<script>
+  const instrumentSelect = document.getElementById('instrument-select');
+  const sdrSelect = document.getElementById('sdr-select');
+  const exampleSelect = document.getElementById('example-select');
+  const audioPlayer = document.getElementById('audio-player');
+  const audioSource = document.getElementById('audio-source');
+  const audioPathDisplay = document.getElementById('audio-path-display');
+
+  // Update the audio source and path whenever dropdowns are changed
+  [instrumentSelect, sdrSelect, exampleSelect].forEach((select) => {
+    select.addEventListener('change', () => {
+      if (instrumentSelect.value && sdrSelect.value && exampleSelect.value) {
+        const instrument = instrumentSelect.value;
+        const sdr = sdrSelect.value;
+        const example = exampleSelect.value;
+
+        // Construct the audio path dynamically
+        const audioPath = `/audio/guitar/${instrument}/${sdr}/${example}.wav`;
+
+        // Update the audio source and display the path
+        audioSource.id = audioPath;
+        audioSource.src = audioPath;
+        audioPlayer.load(); // Load the audio file into the player
+        audioPathDisplay.textContent = `Audio Path: ${audioPath}`;
+      }
+    });
+  });
+</script>

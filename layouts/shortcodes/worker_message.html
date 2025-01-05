@@ -1,0 +1,6 @@
+{{/* Get the stored user data from Scratch */}}
+{{ $userName := .Scratch.Get "user_name" }}
+{{ $userSurname := .Scratch.Get "user_surname" }}
+
+{{/* Print the message */}}
+<!--<p>{{ printf "%s %s is a good worker" $userName $userSurname }}</p>-->

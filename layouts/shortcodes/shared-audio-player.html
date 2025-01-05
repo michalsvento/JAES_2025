@@ -1,60 +1,6 @@
 <div class="shared-audio-player">
-    <audio id="shared-audio" controls></audio>
-    <div id="current-audio-name" class="audio-name">No file selected</div>
+  <audio id="{{ .Get "id" }}" controls></audio>
+  <p id="selected-root-display">Selected Root: None</p>
 </div>
 
-<script>
-    function playNewAudio(src) {
-        const audioPlayer = document.getElementById('shared-audio');
-        const audioName = document.getElementById('current-audio-name');
-
-        // Stop current playback if necessary
-        if (!audioPlayer.paused) {
-            audioPlayer.pause();
-        }
-
-        // Set the new audio source
-        audioPlayer.src = src;
-
-        // Extract the file name from the source URL
-        const fileName = src //.split('/').pop(); // Get the last part of the path
-        const decodedFileName = decodeURIComponent(fileName); // Decode any URL-encoded characters
-
-        // Update the displayed file name
-        audioName.textContent = decodedFileName;
-
-        // Load and play the new audio
-        audioPlayer.load();
-        audioPlayer.play();
-    }
-</script>
-
-<style>
-    /* Ensure the shared audio player is isolated */
-    .shared-audio-player {
-        display: flex;
-        flex-direction: column; /* Stack the player and name vertically */
-        align-items: flex-start; /* Align everything to the left */
-        margin: 15px 0; /* Space around the player */
-    }
-
-    audio {
-        width: 100%; /* Full width responsive player */
-        max-width: 350px; /* Set a reasonable max width */
-        margin-bottom: 10px; /* Space below the player */
-    }
-
-    .audio-name {
-        font-size: 16px; /* Increase readability */
-        font-style: normal; /* Keep it simple */
-        color: #333; /* A visible and neutral color */
-        background-color: #f9f9f9; /* Light background to stand out */
-        padding: 5px 10px; /* Add padding around the text */
-        border: 1px solid #ddd; /* Add a border for definition */
-        border-radius: 4px; /* Rounded corners */
-        max-width: 350px; /* Match the player’s width */
-        white-space: nowrap; /* Prevent text from wrapping */
-        overflow: hidden; /* Hide overflowing text */
-        text-overflow: ellipsis; /* Add ellipsis for long text */
-    }
-</style>
+<script src="/js/main.js"></script>
