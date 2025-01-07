@@ -1,8 +1,11 @@
 <div class="audio-selector">
-    <button class="play-button" onclick="playNewAudio('{{ .Get "src" }}')">
+    <button class="play-button" onclick="playNewAudio('{{ .Get "src" | relURL }}')">
         ▶ {{ .Get "title" }}
     </button>
 </div>
+
+
+
 
 
 <style>
@@ -11,7 +14,7 @@
 }
 
 .play-button {
-    background-color: darkred;
+    background-color: red;
     color: whitesmoke;
     border: none;
     border-radius: 5px;
@@ -21,7 +24,7 @@
 }
 
 .play-button:hover {
-    background-color: #005f99;
+    background-color: indianred;
 }
 </style>
 
