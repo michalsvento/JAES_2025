@@ -3,6 +3,5 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/themes/PaperMod" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/themes/PaperMod/themes/PaperMod" vcs="Git" />
   </component>
 </project>

@@ -1,0 +1,29 @@
+<div class="audio-selector">
+    <button class="play-button" onclick="playNewAudio('{{ .Get "src" }}')">
+        ▶ {{ .Get "title" }}
+    </button>
+</div>
+
+
+<style>
+.audio-selector {
+    margin: 10px 0; /* Add spacing between buttons */
+}
+
+.play-button {
+    background-color: darkred;
+    color: whitesmoke;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.play-button:hover {
+    background-color: #005f99;
+}
+</style>
+
+
+
