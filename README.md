@@ -1,2 +1,3 @@
 # JAES_2025
-Supplementary code and webpage for JAES paper
+
+Supplementary webpage for JAES paper
