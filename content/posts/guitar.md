@@ -2,7 +2,7 @@
 date: '2025-01-02T13:33:03+01:00'
 draft: false
 title: 'Guitar evaluation'
-summary: 'Hard/Soft clipping for speech signals versus baselines'
+summary: 'Hard/Soft clipping for guitar signals versus baselines'
 weight: 2
 ---
 
