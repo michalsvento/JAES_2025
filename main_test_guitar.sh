@@ -78,7 +78,7 @@ network=cqtdiff+_44k_32binsoct
 
 #guitar checkpoint
 # Here add your path to the checkpoint
-ckpt="checkpoints/guitar_CareerSG_44k_6s-325000.pt"
+ckpt="checkpoints/guitar_IDMT_Career_44k/guitar_CareerSG_44k_6s-325000.pt"
 
 # Name for the experiment
 n="experiment"
