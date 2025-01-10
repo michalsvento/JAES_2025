@@ -1,0 +1,4 @@
+# Demucs from DDD: setup for music
+_target_: "networks.demucs.Demucs"
+
+sample_rate: 44100

@@ -1,0 +1,283 @@
+name: "2nd-order-Heun-informed" #same as the file name, try to do that for all testers
+
+tester:
+  _target_: 'testing.tester.Tester'
+
+sampler:
+  _target_: 'testing.EulerHeunSamplerDPS.EulerHeunSamplerDPS'
+
+modes: ["blind"] #modes to test
+
+checkpoint: None
+
+logging_callback:
+  _target_: 'callbacks.logging_callback.logging_callback'
+  _partial_: True
+
+evaluation_callback:
+  _target_: 'callbacks.evaluation_callback.evaluation_callback_notest'
+  metrics: ["STFT_mag", "freq_error", "ESR"]
+  _partial_: True
+
+init_callback:
+  _target_: 'callbacks.init_callback.init_callback'
+  _partial_: True
+
+set:
+  mode: "independent"
+  num_examples: 4
+  minibatch_size_diffusion: 1
+  evaluate_every: 100
+  normalize_rms: 0.06
+  overwrite: False
+
+sampling_params:
+  same_as_training: False #if true, the sampling parameters will be the same as the ones used for training (sigma_data, sigma_min, sigma_max and rho)
+  sde_hp:
+    sigma_min: 1e-5
+    sigma_max: 1 #this is sigma_start
+    rho: 7
+  Schurn: 20
+  Snoise: 1
+  Stmin: 0
+  Stmax: 10
+  order: 1 #order of the sampler (1 or 2)
+  T: 50 #number of discretizatio steprs
+  schedule: "edm" #"log": log schedule using the parameters in sampling_params
+
+
+posterior_sampling:
+  zeta: 0.2 #zeta for the posterior sampling
+  normalization_type: "grad_norm"
+
+  grad_clip: 100000
+
+  rec_loss: 
+    name: "l2_comp_stft_summean"
+    N: 100
+    NFFT: 1024
+    WIN_LEN: 1024
+    HOP: 256
+    weight: 1
+    frequency_weighting: "none"
+    compression_factor: 0.667
+    multiple_compression_factors: False
+
+  rec_loss_aux: 
+    name: "none"
+    weight: 10
+    frequency_weighting: "none"
+    n_mels: 160
+    n_fft:  1024
+    compression_factor: 1
+    multiple_compression_factors: False
+
+  rec_loss_params: 
+    name: "l2_comp_stft_summean"
+    weight: 1
+    frequency_weighting: "none"
+    compression_factor: 0.667
+    multiple_compression_factors: False
+
+  rec_loss_params_aux: 
+    name: "none"
+    weight: 10
+    frequency_weighting: "none"
+    n_mels: 160
+    n_fft:  1024
+    compression_factor: 1
+    multiple_compression_factors: False
+
+  imp_response_reg:
+    use: False
+    name: "impulse_gaussian_penalty"
+    weight: 1000000
+    sigma: 1
+
+  observations_annealing:
+    use: False
+    mode: "same_as_x"
+    sigma_min: 1e-1
+    scaler: 0.1
+
+  initialization:
+    mode: "y+noise" #or "noise" 
+    scale_y: ${tester.set.normalize_rms}
+
+  constraint_magnitude:
+    use: True
+    strategy: "sigma_data"
+    stop_constraint_time: 0
+    speech_scaling: ${tester.set.normalize_rms}
+
+  blind_hp:
+    lr_op: 0.02
+    beta1: 0.9
+    beta2: 0.99
+    weight_decay: 0
+    op_updates_per_step: 100
+    grad_clip_use: False
+    grad_clip: 1
+
+#experiment configuration for different testing modes
+unconditional:
+  num_samples: 1
+  audio_len: 262144
+
+# Simulated distortion
+distortion:
+  target_type: "Nonlinear"
+  path_pair: /home/molinee2/datasets/Guitar/TubeScreamer/target
+  fix_SDR:
+    use: False
+    target_SDR: 0 #in dB
+  name_params: "LTI_EQ"
+  op_hp:
+    dummy: False #used for evaluation only, it will skip the init, set to False always
+    filter:
+      type: "lowpass"
+      fc: 1000
+      Q: 0.707
+      A: 1
+    lpf:
+      type: "firwin"
+      fc: 500
+      order: 200
+      beta: 6.76
+    tanh:
+      g_pre: 1
+      g_post: 1
+      g_blend: 0.5
+      g_bias: 0.05
+    NLD: "carbon_mic"
+    quantize:
+      w: 4
+    filters: "freq_EQ"
+    g_pre: 2
+    alpha: 0.5  
+    g_post: 0.7
+    limit1: 0.1
+    limit2: 0.15
+    estimate_phases: False
+    estimate_magnitudes: True
+    EQ_freqs: [0,125,250,375,500,625,750,875,1000,1250,1500,1750,2000,2250,2500,2750,3000,3500,4000,4500,5000,5500,6000,6500,7000,7500,8000, 8500, 9000, 9500, 10000, 10500, 11025]
+    NFFT: 2048
+    win_length: 1024
+    hop_length: 256
+    window: "hann"
+    init_single_value: True
+    G: 20
+    k: 2
+    identity_init: True
+    dc: 
+      cutoff: 1000
+      input_gain_db: 20
+      output_gain_db: 0
+      n_diodes: 2
+    init_params:
+        weights: [0]
+        weights_2: [0]
+        a: [1,1e-2,1e-3,1e-4,1e-4,1e-4,1e-4]
+
+blind_distortion:
+  name_params: "Tanh"
+  op_type: "Nonlinear"
+  op_hp_GRU:
+    NFFT: 2048
+    win_length: 1024
+    hop_length: 256
+    window: "hann"
+    GRU_params: 
+      input_size: 1
+      hidden_size: 64
+      output_size: 1
+      skip: False
+      p_dropout: 0
+      bias: True
+      num_layers: 1
+  op_hp_wavenet:
+    NFFT: 2048
+    win_length: 1024
+    hop_length: 256
+    window: "hann"
+    batch_size: 16
+    wavenet_params: 
+      channels: 16
+      blocks: 2
+      layers: 9
+      dilation_growth: 2
+      kernel_size: 3
+      bias: False
+  op_hp_wavenet_INN:
+    NFFT: 2048
+    win_length: 1024
+    hop_length: 256
+    window: "hann"
+    batch_size: 16
+    detach_d: True
+    wavenet_params: 
+      channels: 16
+      channels_d: 16
+      blocks_P: 1
+      blocks_U: 1
+      layers: 9
+      dilation_growth: 2
+      kernel_size: 3
+      bias: False
+      num_reps: 1
+  op_hp_s4:
+    NFFT: 2048
+    win_length: 1024
+    hop_length: 256
+    window: "hann"
+    inner_audio_channel:  8
+    s4_hidden_size:  16
+    depth : 8
+    block_type: "MambaBlock"
+    use_norm: False
+  op_hp:
+    dummy: False #used for evaluation only, it will skip the init, set to False always
+    NLD: "sumtanh"
+    filters: "freq_EQ"
+    limit: 0.1
+    estimate_phases: "all"
+    estimate_magnitudes: True
+    spline_init: "identity" # "identity" #data_driven
+    tanh:
+      g_pre: 20
+      g_post: 1
+      g_blend: 0.5
+      g_bias: 0.05
+    g_pre: 10
+    g_post: 1
+    EQ_freqs: [0,125,250,375,500,625,750,875,1000,1250,1500,1750,2000,2250,2500,2750,3000,3500,4000,4500,5000,5500,6000,6500,7000,7500,8000, 8500, 9000, 9500, 10000, 10500, 11025]
+    NFFT: 2048
+    win_length: 1024
+    hop_length: 256
+    window: "hann"
+    init_single_value: True
+    identity_init: True
+    G: 41
+    k: 2
+    mu: 20.0
+    n_channels: 1
+    s4_hidden_size: 4
+    sumtanh:
+      order: 10
+    dc: 
+      cutoff": 1000
+      input_gain_db": 30
+      output_gain_db": 0
+      n_diodes": 2
+    init_params:
+        use: True
+        weights: [0]
+        weights_2: [0]
+        a: [1,1e-2,1e-3,1e-4,1e-4,1e-4,1e-4]
+
+
+#logging configuration
+wandb:
+  use: True
+  log_every: 10
+  run_name: "2nd-order-Heun-blind_hc"

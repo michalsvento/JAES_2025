@@ -1,0 +1,22 @@
+train:
+  _target_: datasets.vctk.VCTKTrain
+  segment_length: 65536
+  fs: 16000
+  path: /scratch/elec/t412-asp/audio_datasets/speech/VCTK/wav16
+  speakers_discard: ["p232", "p257"]
+  speakers_test: ["p257", "p232"]
+  normalize: False
+  rms: 0.05
+  extension: ".wav"
+  seed: 0 #random seed
+
+inference_train:
+  _target_: datasets.audiofolder.FolderTestPaired
+  segment_length: -1
+  fs: 16000
+  path_clean: /scratch/elec/t412-asp/distortion_evaluation/speech_clipping/vctk_test_small/1dB/original"
+  path_distorted: /scratch/elec/t412-asp/distortion_evaluation/speech_clipping/vctk_test_small/1dB/clipped"
+  normalize: False
+  rms: 0.05
+  num_examples: 20
+  seed: 0

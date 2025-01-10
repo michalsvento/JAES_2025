@@ -1,0 +1,23 @@
+train:
+   _target_: "datasets.audiofolder.SingleFileTrain"
+   file: ["/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/DDD_Guitar/train/CareerSG-DI.wav"]
+   fs: 44100
+   seg_len: 262144
+   stereo: False
+
+inference_train:
+   _target_: "datasets.audiofolder.SingleFileTest"
+   file_clean: ["/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/ClipFreeData/inference_train/CareerSG-DI.wav"]
+   file_distorted: ["/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/ClipFreeData/inference_train/CareerSG-LightDist.wav"]
+   stereo: False
+   fs: 44100
+   segment_length: 262144
+
+inference_test:
+   _target_: "datasets.audiofolder.SingleFileTest"
+   file_clean: ["/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/ClipFreeData/inference_test/CareerSG-DI.wav"]
+   file_distorted: ["/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/ClipFreeData/inference_test/CareerSG-LightDist.wav"]
+   stereo: False
+   fs: 44100
+   segment_length: 262144
+

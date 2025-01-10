@@ -1,0 +1,26 @@
+train:
+   _target_: "datasets.audiofolder.SingleFileTrainPaired"
+   file_clean: [ "/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/ClipFreeData/inference_train/Ibanez2820-DI.wav"]
+   file_distorted: ["/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/ClipFreeData/inference_train/Ibanez2820-LightDist.wav"]
+   fs: 44100
+   seg_len: 44100
+   stereo: False
+
+
+inference_train:
+   _target_: "datasets.audiofolder.AudioFolderDatasetTest_numbered"
+   path: "/scratch/elec/t412-asp/audio_datasets/BNDremoval/clean_split"
+   stereo: False
+   num_examples: 50
+   fs: 44100
+   segment_length: 262144
+
+inference_test:
+   _target_: "datasets.audiofolder.SingleFileTest"
+   file_clean: ["/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/ClipFreeData/inference_test/Ibanez2820-DI.wav"]
+   file_distorted: ["/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/ClipFreeData/inference_test/Ibanez2820-LightDist.wav"]
+   stereo: False
+   fs: 44100
+   segment_length: 262144
+
+

@@ -1,0 +1,25 @@
+train:
+   _target_: "datasets.audiofolder.EGDBtrain"
+   path: "/scratch/elec/t412-asp/audio_datasets/Guitar/EGDB"
+   path_csv: "/scratch/elec/t412-asp/audio_datasets/Guitar/EGDB/train_list.csv"
+   fs: 44100
+   seg_len: 262144
+   stereo: False
+
+inference_train:
+   _target_: "datasets.audiofolder.SingleFileTest"
+   file_clean: ["/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/ClipFreeData/july2024/train_B/CareerSG-DI-16th.wav"]
+   file_distorted: ["/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/ClipFreeData/july2024/train_B/CareerSG-LightDist-16th.wav"]
+   stereo: False
+   num_examples: 1
+   fs: 44100
+   segment_length: 262144
+
+inference_test:
+   _target_: "datasets.audiofolder.SingleFileTest"
+   file_clean: ["/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/ClipFreeData/july2024/test/CareerSG-DI.wav"]
+   file_distorted: ["/scratch/elec/t412-asp/audio_datasets/Guitar/IDMT-SMT-GUITAR_V2/ClipFreeData/july2024/test/CareerSG-LightDist.wav"]
+   stereo: False
+   num_examples: 1
+   fs: 44100
+   segment_length: 262144
