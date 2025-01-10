@@ -165,7 +165,6 @@ class SDE:
 
 
         if len(cnoise.shape) == 1:
-            # dirty patch
             cnoise = cnoise.unsqueeze(-1)
 
         if input.ndim == 2:
