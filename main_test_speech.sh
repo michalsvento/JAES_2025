@@ -32,7 +32,7 @@ network=ncsnpp
 
 # speech checkpoint
 # Here add your path to the checkpoint
-ckpt="checkpoints/speech_VCTK_16k/VCTK_16k_4s-510000.pt"
+ckpt="checkpoints/speech_VCTK_16k/speech_VCTK_16k_4s-510000.pt"
 
 # Name for the experiment
 n="speech_test"
