@@ -121,19 +121,16 @@ class SDE:
 
         return cskip * xn + cout * net(
             cin * xn, cnoise
-        )  # this will crash because of broadcasting problems, debug later!
+        )  
 
     def prepare_train_preconditioning(self, x, t, n=None, *args, **kwargs):
-        # weight=self.lambda_w(sigma)
-        # Eloi: Is calling the denoiser here a good idea? Maybe it would be better to apply directly the preconditioning as in the paper, even though Karras et al seem to do it this way in their code
-        # Jm: I don't mind that preconditioning form actually, makes the loss also more normalized and easier to compare in between runs/SDEs i.m.o.
 
         mu, sigma = self._mean(x, t), self._std(t).unsqueeze(-1)
         sigma = sigma.view(*sigma.size(), *(1,) * (x.ndim - sigma.ndim))
         if n is None:
             n = self.sample_prior(shape=x.shape).to(x.device)
         x_perturbed = mu + sigma * n
-        # self.sample_prior(x.shape).to(x.device)
+
 
         cskip = self.cskip(sigma)
         cout = self.cout(sigma)
@@ -166,7 +163,6 @@ class SDE:
 
         input, target, cnoise = self.prepare_train_preconditioning(x, t, n=n)
 
-        # print("input",input.shape,"cnoise", cnoise.shape)
 
         if len(cnoise.shape) == 1:
             # dirty patch
@@ -181,13 +177,5 @@ class SDE:
             estimate = estimate.squeeze(1)
         error = estimate - target
 
-        # apply this on the trainer
-        # try:
-        #    #this will only happen if the model is cqt-based, if it crashes it is normal
-        #    if self.args.net.use_cqt_DC_correction:
-        #        error=net.CQTransform.apply_hpf_DC(error) #apply the DC correction to the error as we dont want to propagate the DC component of the error as the network is discarding it. It also applies for the nyquit frequency, but this is less critical.
-        # except:
-        #    pass
 
-        # here we have the chance to apply further emphasis to the error, as some kind of perceptual frequency weighting could be
         return error**2, self._std(t)
