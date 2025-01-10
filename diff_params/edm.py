@@ -136,13 +136,11 @@ class EDM(SDE):
                 xn.shape[0],
             ).unsqueeze(-1)
 
-        # print(xn.shape, cskip.shape, cout.shape, cin.shape, cnoise.shape)
-        print("xn", xn.shape)
         x_hat = cskip * xn + cout * net(
             (cin * xn).to(torch.float32), cnoise.to(torch.float32)
         ).to(
             xn.dtype
-        )  # this will crash because of broadcasting problems, debug later!
+        )  
 
         try:
             if net.CQTransform is not None:
@@ -152,86 +150,3 @@ class EDM(SDE):
 
         return x_hat
 
-
-class EDM_whitened(EDM):
-    """
-    Definition of the diffusion parameterization, following ( Karras et al., "Elucid
-    """
-
-    def __init__(
-        self,
-        file_state_dict,
-        type,
-        use_speaker_cond,
-        p_drop_speaker,
-        sde_hp,
-        speaker_cond_sample_rate=None,
-        our_sample_rate=None,
-    ):
-
-        super().__init__(
-            type,
-            use_speaker_cond,
-            p_drop_speaker,
-            sde_hp,
-            speaker_cond_sample_rate,
-            our_sample_rate,
-        )
-
-        self.whitener_dict = torch.load(file_state_dict)
-
-    def loss_fn(self, net, x, n=None, *args, **kwargs):
-        """
-        Loss function, which is the mean squared error between the denoised latent and the clean latent
-        Args:
-            net (nn.Module): Model of the denoiser
-            x (Tensor): shape: (B,T) Intermediate noisy latent to denoise
-            sigma (float): noise level (equal to timestep is sigma=t, which is our default)
-        """
-        t = self.sample_time_training(x.shape[0]).to(x.device)
-
-        if self.use_speaker_cond:
-            x_4_emb = x.detach().clone().to(x.device)
-            if self.speaker_cond_sample_rate != self.our_sample_rate:
-                # convert from 44100 to 16000
-                x_4_emb = torchaudio.functional.resample(
-                    x_4_emb, self.speaker_cond_sample_rate, self.our_sample_rate
-                )
-
-            self.classifier.device = x.device
-            self.classifier.mods.embedding_model.to(x.device)
-            embeddings = self.classifier.encode_batch(x_4_emb)
-            # print(embeddings.device)
-            embeddings = embeddings.to(x.device)
-            # apply dropout (p_drop_speaker) to the embeddings
-            if self.p_drop_speaker > 0:
-                to_drop = torch.rand(embeddings.shape[0]) < self.p_drop_speaker
-                embeddings[to_drop] *= 0
-
-        x_white = utils.whitening(x, self.whitener_dict)
-
-        input, target, cnoise = self.prepare_train_preconditioning(x_white, t, n=n)
-
-        # print("embeddings", embeddings, to_drop)
-        # print(torch.isnan(input).any(), "nan in input")
-        # print(torch.isnan(target).any(), "nan in target")
-        # print(torch.isnan(cnoise).any(), "nan in cnoise")
-        # print(torch.isnan(embeddings).any(), "nan in embeddings")
-
-        estimate = net(
-            input.unsqueeze(1), cnoise, speaker_emb=embeddings.squeeze(1)
-        ).squeeze(1)
-
-        # print(torch.isnan(estimate).any(), "nan in estimate")
-        error = estimate - target
-
-        # apply this on the trainer
-        # try:
-        #    #this will only happen if the model is cqt-based, if it crashes it is normal
-        #    if self.args.net.use_cqt_DC_correction:
-        #        error=net.CQTransform.apply_hpf_DC(error) #apply the DC correction to the error as we dont want to propagate the DC component of the error as the network is discarding it. It also applies for the nyquit frequency, but this is less critical.
-        # except:
-        #    pass
-
-        # here we have the chance to apply further emphasis to the error, as some kind of perceptual frequency weighting could be
-        return error**2, self._std(t)
