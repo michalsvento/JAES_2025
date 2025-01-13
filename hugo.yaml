@@ -92,7 +92,7 @@ params:
       ^3^*[Acoustics and Audio Group](https://www.acoustics.ed.ac.uk/), University of Edinburgh, Edinburgh, UK*
       
 
-      Paper submitted to the Journal of  Audio Engineering Society (JAES) special issue "Digital Audio Effects"
+      Submitted to the Journal of Audio Engineering Society, special issue "The Sound of Digital Audio Effects"
       
 
   socialIcons:
@@ -136,7 +136,7 @@ menu:
   main:
     - identifier: Paper
       name: Paper 📰
-      url: https://arxiv.org
+      url: http://arxiv.org/abs/2501.05959
       weight: 10
     - identifier: Code 
       name: Code 🐍
